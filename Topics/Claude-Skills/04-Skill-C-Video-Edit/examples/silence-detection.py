@@ -12,12 +12,12 @@ pydub 라이브러리를 사용하여 오디오 레벨을 분석하고,
 
 예시:
     python silence-detection.py video.mp4
-    python silence-detection.py audio.mp3 --threshold -40 --min-silence 500
+    python silence-detection.py audio.mp3 --threshold -40 --min-silence 300
     python silence-detection.py video.mp4 --output report.txt
 
 옵션:
     --threshold: 무음 판단 임계값 (dB), 기본값: -40
-    --min-silence: 최소 무음 길이 (ms), 기본값: 500
+    --min-silence: 최소 무음 길이 (ms), 기본값: 300
     --output: 결과 저장 파일 경로 (선택)
 
 작성일: 2026-01-18
@@ -229,8 +229,8 @@ def main():
     parser.add_argument("file", help="분석할 파일 경로 (영상 또는 오디오)")
     parser.add_argument("--threshold", type=int, default=-40,
                         help="무음 판단 임계값 (dB), 기본값: -40")
-    parser.add_argument("--min-silence", type=int, default=500,
-                        help="최소 무음 길이 (ms), 기본값: 500")
+    parser.add_argument("--min-silence", type=int, default=300,
+                        help="최소 무음 길이 (ms), 기본값: 300")
     parser.add_argument("--output", "-o", type=str, default=None,
                         help="결과 보고서 저장 경로 (선택)")
     parser.add_argument("--no-details", action="store_true",

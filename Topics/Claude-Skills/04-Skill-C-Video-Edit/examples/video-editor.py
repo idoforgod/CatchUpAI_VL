@@ -245,7 +245,8 @@ def edit_audio(audio, keep_ranges):
 
 
 def edit_video_ffmpeg(input_path, output_path, keep_ranges):
-    """FFmpeg를 사용하여 영상 편집"""
+    """FFmpeg를 사용하여 영상 편집 (필터 파일 방식으로 Windows 명령줄 길이 제한 우회)"""
+    import re
     print(f"\n[5/5] 영상 편집 중 (FFmpeg)...")
 
     if len(keep_ranges) > 100:
@@ -266,9 +267,15 @@ def edit_video_ffmpeg(input_path, output_path, keep_ranges):
     filter_complex += "".join(concat_parts)
     filter_complex += f"concat=n={len(keep_ranges)}:v=1:a=1[outv][outa]"
 
+    # 항상 필터를 파일로 저장 (Windows 명령줄 길이 제한 우회)
+    filter_file = tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False, encoding='utf-8')
+    filter_file.write(filter_complex)
+    filter_file.close()
+    print(f"      필터 파일: {filter_file.name}")
+
     cmd = [
         "ffmpeg", "-y", "-i", input_path,
-        "-filter_complex", filter_complex,
+        "-filter_complex_script", filter_file.name,
         "-map", "[outv]", "-map", "[outa]",
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "128k",
@@ -278,18 +285,44 @@ def edit_video_ffmpeg(input_path, output_path, keep_ranges):
     print(f"      FFmpeg 실행 중... (구간 수: {len(keep_ranges)})")
 
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=1800)
+        # Popen 사용하여 진행 상황 표시
+        process = subprocess.Popen(
+            cmd,
+            stderr=subprocess.PIPE,
+            universal_newlines=True
+        )
 
-        if result.returncode != 0 and not os.path.exists(output_path):
-            raise RuntimeError(f"FFmpeg 실패: {result.stderr[:500]}")
+        # 진행 상황 모니터링
+        last_time = ""
+        for line in process.stderr:
+            if 'time=' in line:
+                match = re.search(r'time=(\S+)', line)
+                if match and match.group(1) != last_time:
+                    last_time = match.group(1)
+                    print(f"\r      진행: {last_time}", end='', flush=True)
+
+        process.wait()
+        print()  # 줄바꿈
+
+        # 임시 필터 파일 정리
+        if os.path.exists(filter_file.name):
+            os.unlink(filter_file.name)
+
+        if process.returncode != 0:
+            raise RuntimeError("FFmpeg 실행 실패")
+
+        if not os.path.exists(output_path):
+            raise RuntimeError("출력 파일이 생성되지 않았습니다.")
 
         print(f"      [OK] 영상 편집 완료!")
         return True
 
-    except subprocess.TimeoutExpired:
-        raise RuntimeError("FFmpeg 실행 시간 초과 (30분)")
-    except FileNotFoundError:
-        raise RuntimeError("FFmpeg가 설치되지 않았습니다.")
+    except Exception as e:
+        if os.path.exists(filter_file.name):
+            os.unlink(filter_file.name)
+        if isinstance(e, RuntimeError):
+            raise
+        raise RuntimeError(f"FFmpeg 오류: {e}")
 
 
 def save_audio(audio, output_path):
