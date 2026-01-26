@@ -1,104 +1,75 @@
 # Video Cleaning - Quick Start
 
-Remove pauses and filler words from Korean videos automatically.
+Transcribe and remove pauses/filler words from videos with a single command. Handles long videos automatically.
 
 ## Setup
 
 ```bash
 # Install FFmpeg
-brew install ffmpeg  # macOS
-# OR sudo apt install ffmpeg  # Linux
+# macOS: brew install ffmpeg
+# Linux: sudo apt install ffmpeg
+# Windows: Download from ffmpeg.org
 
 # Install Python dependencies
 pip install openai
 
 # Set OpenAI API key
-export OPENAI_API_KEY="sk-..."
+export OPENAI_API_KEY="your-key-here"
 ```
 
-## Basic Usage
+## Unified Workflow (New)
+
+The process is now a single step. The script will automatically run transcription if needed.
 
 ```bash
-# Step 1: Transcribe video
-python transcribe_video.py "my_video.mp4"
-
-# Step 2: Preview edits
-python edit_video_remove_pauses.py "my_video.mp4" --preview
-
-# Step 3: Create edited video
-python edit_video_remove_pauses.py "my_video.mp4"
+# Transcribe and edit in one go
+python edit_video_remove_pauses.py "my_video.mp4" --transcribe --no-fillers --pause-threshold 0.5
 ```
 
-## What Gets Removed
+This command will:
+1.  Check for `my_video - transcript.json`.
+2.  If not found, it runs the transcription automatically.
+3.  It then removes pauses longer than 0.5 seconds.
 
-- ✅ Pauses longer than 1.0 seconds
-- ✅ Korean filler words: 어, 음, 아
+## Long Video Support
 
-## Expected Results
-
-- **Time saved**: 5-10% (1-2 min per 25-min video)
-- **Cost**: ~$0.15 per 25-min video (OpenAI API)
-- **Output**: `{video_name} - edited.mov`
+- ✅ **Automatic Chunking**: Videos longer than the `chunk-duration` are automatically split, processed, and merged.
+- **Transcription**: Defaults to 20-minute chunks to avoid API limits.
+- **Editing**: Defaults to 30-minute chunks for better performance.
 
 ## Common Options
 
 ```bash
-# Custom pause threshold (remove pauses > 0.8 seconds)
-python edit_video_remove_pauses.py "video.mp4" --pause-threshold 0.8
+# Run transcription and edit with a 0.8s pause threshold
+python edit_video_remove_pauses.py "video.mp4" --transcribe --pause-threshold 0.8
+
+# Change chunk size to 10 mins (600s) for potentially faster API responses
+python edit_video_remove_pauses.py "long_video.mp4" --transcribe --chunk-duration 600
+
+# Specify a different language for transcription
+python edit_video_remove_pauses.py "video_en.mp4" --transcribe --lang "en"
+
+# Just run editing (if transcript already exists)
+python edit_video_remove_pauses.py "video.mp4" --no-fillers
 
 # Custom output path
-python edit_video_remove_pauses.py "video.mp4" --output "cleaned.mp4"
-
-# Adjust padding around cuts
-python edit_video_remove_pauses.py "video.mp4" --padding 0.15
-
-# Transcribe English video
-python transcribe_video.py "video.mp4" --language "en"
+python edit_video_remove_pauses.py "video.mp4" --transcribe --output "cleaned.mp4"
 ```
+
+## What Gets Removed
+
+- ✅ Pauses longer than the `--pause-threshold`
+- ✅ Korean filler words: 어, 음, 아, 이, 오, 저 (unless `--no-fillers` is used)
 
 ## Output Files
 
-**After transcription**:
+**After running the full pipeline**:
 - `video - transcript.json` (complete data)
 - `video - transcript.md` (formatted)
 - `video - word_timings.txt` (reference)
-
-**After editing**:
-- `video - edited.mov` (cleaned video)
-- `video - edited_edit_report.txt` (detailed report)
-
-## Troubleshooting
-
-**"Transcript not found"**: Run transcription first
-```bash
-python transcribe_video.py "video.mp4"
-```
-
-**"FFmpeg not found"**: Install FFmpeg
-```bash
-brew install ffmpeg  # macOS
-```
-
-**"API key missing"**: Set environment variable
-```bash
-export OPENAI_API_KEY="sk-..."
-```
-
-## Full Documentation
-
-See [SKILL.md](_Settings_/Skills/video-cleaning/SKILL.md) for:
-- Detailed usage guide
-- Advanced options
-- Troubleshooting
-- Best practices
-- Technical details
-
-## Cost Breakdown
-
-- OpenAI Whisper: $0.006 per minute
-- 25-minute video: $0.15
-- 1-hour video: $0.36
+- `video_edited.mkv` (cleaned video)
+- `video_edited_edit_report.txt` (detailed report)
 
 ---
 
-**Quick Workflow**: Transcribe → Preview → Edit → Done!
+**New Workflow**: Run one command → Done!
