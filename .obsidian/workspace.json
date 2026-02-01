@@ -11,10 +11,14 @@
             "id": "9e4b1f9088b1d021",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 13.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "2026-02-01 AI-Powered Requirements Documents 13"
             }
           }
         ]
@@ -176,28 +180,43 @@
       "bases:Create new base": false
     }
   },
-  "active": "0d7ece879b5f3c16",
+  "active": "9e4b1f9088b1d021",
   "lastOpenFiles": [
-    "_Settings_/Logs/ai4pkm_2026-01-07.log",
-    "Topics/Claude-Skills/vl_worklog/20260104_M1_Claude-Skills.md",
-    "Topics/Claude-Skills/01-Claude-Skills-Basics/references/useful-links.md",
-    "Topics/Claude-Skills/01-Claude-Skills-Basics/README.md",
-    "Topics/Claude-Skills/01-Claude-Skills-Basics/concepts/claude-skills-overview.md",
-    "Topics/Claude-Skills/01-Claude-Skills-Basics/guides",
-    "Topics/Claude-Skills/01-Claude-Skills-Basics/references",
-    "Topics/Claude-Skills/01-Claude-Skills-Basics/examples",
-    "Topics/Claude-Skills/01-Claude-Skills-Basics/concepts",
-    "Topics/Claude-Skills/01-Claude-Skills-Basics",
-    "Topics/Claude-Skills/vl_roadmap/20260104_RoadMap_Claude-Skills.md",
-    "Topics/Claude-Skills/vl_prompts/daily_learning_prompt.md",
-    "Topics/Claude-Skills/vl_prompts/roadmap_prompt.md",
-    "Topics/Claude-Skills/topic_info.md",
-    "Topics/Claude-Skills/vl_worklog",
-    "Topics/Claude-Skills/vl_prompts",
-    "Topics/Claude-Skills/vl_roadmap",
-    "Topics/Claude-Skills/vl_materials",
-    "Topics/Claude-Skills",
-    "Claude-Skills_topic_starter.md",
-    "AI/History/2026-01-04-3661c7c6-3362-4cd2-a884-743f21785a6b.md"
+    "Topics/Clearly-BRD-PRD/01-Clearly-Overview/README.md.tmp.22592.1769957013673",
+    "Topics/Clearly-BRD-PRD/01-Clearly-Overview/guides/clearly-quick-start.md",
+    "Topics/Clearly-BRD-PRD/01-Clearly-Overview/guides/clearly-quick-start.md.tmp.22592.1769956972818",
+    "Topics/Clearly-BRD-PRD/01-Clearly-Overview/concepts/vibe-coding-role.md",
+    "Topics/Clearly-BRD-PRD/01-Clearly-Overview/README.md",
+    "Topics/Clearly-BRD-PRD/01-Clearly-Overview/concepts/what-is-clearly.md",
+    "Topics/Clearly-BRD-PRD/01-Clearly-Overview/concepts/brd-vs-prd.md",
+    "Topics/Clearly-BRD-PRD/vl_worklog/20260201_M1_Clearly-BRD-PRD.md",
+    "Topics/Clearly-BRD-PRD/01-Clearly-Overview/guides",
+    "Topics/Clearly-BRD-PRD/01-Clearly-Overview/concepts",
+    "Topics/Clearly-BRD-PRD/01-Clearly-Overview",
+    "Topics/Clearly-BRD-PRD/vl_roadmap/20260201_RoadMap_Clearly-BRD-PRD.md",
+    "Topics/Clearly-BRD-PRD/vl_prompts/daily_learning_prompt.md",
+    "Topics/Clearly-BRD-PRD/vl_prompts/roadmap_prompt.md",
+    "README.md.tmp.22592.1769953653892",
+    "GETTING_STARTED.md.tmp.22592.1769953595209",
+    "Topics/Clearly-BRD-PRD/topic_info.md",
+    "Topics/Clearly-BRD-PRD/topic_info.md.tmp.22592.1769953030831",
+    "Topics/Clearly-BRD-PRD/vl_worklog",
+    "Topics/Clearly-BRD-PRD/vl_roadmap",
+    "Topics/Clearly-BRD-PRD/vl_prompts",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 12.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 13.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 11.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 10.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 9.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 8.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 7.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 6.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 5.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 4.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 3.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 2.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents 1.md",
+    "Topics/Clearly-BRD-PRD/vl_materials/web_clippings/2026-02-01 AI-Powered Requirements Documents.md",
+    "Topics/Claude-Skills/vl_worklog/20260104_M1_Claude-Skills.md"
   ]
 }

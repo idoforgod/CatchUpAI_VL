@@ -91,7 +91,7 @@ CUA_VL/
 
 ### 핵심 구성 요소 설명
 
-#### 1. **templates/** 폴더
+#### 1. **templates/** 폴더 ⭐ (방법론의 핵심!)
 - **목적**: 새 Topic 시작 시 사용하는 템플릿들
 - **핵심 파일**:
   - `topic_starter.md`: Topic 정보 입력 템플릿
@@ -101,7 +101,11 @@ CUA_VL/
 **특징**:
 - Topic-agnostic (모든 주제에 재사용 가능)
 - 복사하여 각 Topic에 맞게 커스터마이징
-- 방법론의 핵심 엔진 역할
+- **방법론의 핵심 엔진 역할** (Source of Truth)
+
+> **⚠️ 중요**: 새 Topic을 시작할 때는 **반드시 이 templates/ 폴더의 원본 파일을 복사**하세요.
+> 다른 Topic 폴더(예: Topics/Claude-Skills/)에 있는 파일을 복사하면 안 됩니다.
+> 기존 Topic의 파일에는 해당 Topic에 특화된 정보가 포함되어 있어, 새 Topic에 적합하지 않습니다.
 
 #### 2. **[TopicName]/vl_prompts/** 폴더
 - **목적**: 해당 Topic의 프롬프트 파일 저장
