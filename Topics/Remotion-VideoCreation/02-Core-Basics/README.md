@@ -1,0 +1,52 @@
+# M2 - Remotion Core 기초
+
+**학습일**: 2026-02-06
+**Topic**: Remotion-VideoCreation
+**예상 시간**: 4h / **실제 소요**: ~2h
+
+---
+
+## 학습 내용 요약
+
+Remotion Core의 3대 핵심 API를 실습을 통해 학습했습니다:
+
+1. **interpolate()** - 프레임 기반 선형 애니메이션
+2. **spring()** - 물리 기반 자연스러운 애니메이션
+3. **Sequence** - 장면 시간 배치
+
+---
+
+## 실습 결과물
+
+### 1. FadeInText (interpolate 학습)
+- **파일**: `my-first-video/src/FadeInText.tsx`
+- **효과**: 텍스트 페이드인 + 슬라이드업 + 딜레이 부제목 + 페이드아웃
+- **핵심**: `interpolate(frame, [시작, 끝], [출력시작, 출력끝], { clamp })`
+
+### 2. SpringBounce (spring 학습)
+- **파일**: `my-first-video/src/SpringBounce.tsx`
+- **효과**: 3개 박스가 각각 다른 damping으로 바운스 등장
+- **핵심**: `spring({ frame, fps, config: { damping, stiffness, mass } })`
+- **발견**: damping이 낮을수록 많이 바운스, 높으면 안정적
+
+### 3. MultiScene (Sequence 학습)
+- **파일**: `my-first-video/src/MultiScene.tsx`
+- **효과**: 인트로 → 포인트 설명 → 아웃트로 (3장면, 10초)
+- **핵심**: `<Sequence from={프레임} durationInFrames={길이}>`
+- **발견**: Sequence 안에서 useCurrentFrame()은 0부터 시작 (로컬 시간)
+
+---
+
+## 핵심 개념 정리
+
+| API | 용도 | 특징 |
+|-----|------|------|
+| `interpolate()` | 정밀한 값 변환 | 선형적, 입출력 범위 직접 지정 |
+| `spring()` | 자연스러운 모션 | 물리 기반, 0→1 변화, 파라미터 조절 |
+| `Sequence` | 장면 시간 배치 | from으로 시작 시점, 자식은 로컬 시간 |
+
+## 참조 자료
+
+- 개념 정리: `concepts/animation-basics.md`
+- 애니메이션 치트시트: `guides/animation-cheatsheet.md`
+- Remotion 공식 문서: https://www.remotion.dev/docs/animating-properties
